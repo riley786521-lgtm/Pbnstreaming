@@ -1,0 +1,61 @@
+name: Update PBN Matchups
+
+on:
+  workflow_dispatch:
+    inputs:
+      game1:
+        description: 'Game 1 — Team A | Team B | Time'
+        required: true
+        default: 'Atlanta | Philadelphia | Tonight • 9:00 PM'
+      game2:
+        description: 'Game 2 — Team A | Team B | Time'
+        required: false
+        default: 'Steelers | Panthers | Schedule coming soon'
+      game3:
+        description: 'Game 3 — Team A | Team B | Time'
+        required: false
+        default: 'Seahawks | Dallas | Schedule coming soon'
+      game4:
+        description: 'Game 4 — Team A | Team B | Time'
+        required: false
+        default: 'Hawks | Cardinals | Schedule coming soon'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build matchup file
+        env:
+          GAME1: ${{ inputs.game1 }}
+          GAME2: ${{ inputs.game2 }}
+          GAME3: ${{ inputs.game3 }}
+          GAME4: ${{ inputs.game4 }}
+        run: |
+          python - <<'PY'
+          import json, os
+          games=[]
+          for key in ('GAME1','GAME2','GAME3','GAME4'):
+              value=os.environ.get(key,'').strip()
+              if not value:
+                  continue
+              parts=[p.strip() for p in value.split('|',2)]
+              if len(parts)==3 and parts[0] and parts[1]:
+                  games.append({'home':parts[0],'away':parts[1],'time':parts[2]})
+          with open('matchups.json','w',encoding='utf-8') as f:
+              json.dump(games,f,indent=2,ensure_ascii=False)
+          PY
+
+      - name: Commit matchup changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add matchups.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Update PBN matchups'
+          git push
