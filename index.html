@@ -15,17 +15,12 @@
 <section id="replays"><h2>Recent Broadcasts</h2><div class="cards"><div class="card"><h3>PBN Football</h3><p class="muted">Replay library coming soon.</p></div><div class="card"><h3>PBN Pregame</h3><p class="muted">Stay tuned.</p></div><div class="card"><h3>Halftime</h3><p class="muted">More broadcasts coming soon.</p></div></div></section>
 <footer>© PBN • Prime Broadcast Network</footer>
 <script>
-fetch('matchups.json?'+Date.now()).then(r=>r.json()).then(games=>{
-  const list=document.getElementById('matchups');
-  list.innerHTML='';
+fetch('data/matchups.json?'+Date.now()).then(r=>r.json()).then(data=>{
+  const games=data.games||[]; const list=document.getElementById('matchups'); list.innerHTML='';
   if(!games.length){list.innerHTML='<div class="empty">No games scheduled yet.</div>';return;}
-  document.getElementById('heroMatch').textContent='🏈 '+games[0].home+' vs '+games[0].away;
+  document.getElementById('heroMatch').textContent='🏈 '+games[0].team1+' vs '+games[0].team2;
   document.getElementById('heroTime').textContent=games[0].time;
-  games.forEach((g,i)=>{
-    const card=document.createElement('div'); card.className='card';
-    card.innerHTML='<span class="badge">'+(i===0?'PBN BROADCAST':'UPCOMING')+'</span><h3>🏈 '+g.home+' vs '+g.away+'</h3><p class="muted time">'+g.time+'</p>'+(i===0?'<a class="watch" href="watch.html">WATCH →</a>':'');
-    list.appendChild(card);
-  });
+  games.forEach((g,i)=>{const card=document.createElement('div');card.className='card';card.innerHTML='<span class="badge">'+(i===0?'PBN BROADCAST':'UPCOMING')+'</span><h3>🏈 '+g.team1+' vs '+g.team2+'</h3><p class="muted time">'+g.time+'</p>'+(i===0?'<a class="watch" href="watch.html">WATCH →</a>':'');list.appendChild(card);});
 }).catch(()=>{document.getElementById('matchups').innerHTML='<div class="empty">Unable to load the schedule.</div>';});
 </script>
 </body>
