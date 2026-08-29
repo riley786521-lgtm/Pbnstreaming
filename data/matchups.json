@@ -1,8 +1,6 @@
-{
-  "games": [
-    {"team1":"Atlanta","team2":"Philadelphia","time":"Tonight • 9:00 PM"},
-    {"team1":"Pittsburgh","team2":"Carolina","time":"Schedule coming soon"},
-    {"team1":"Seattle","team2":"Dallas","time":"Schedule coming soon"},
-    {"team1":"Seattle","team2":"Arizona","time":"Schedule coming soon"}
-  ]
-}
+[
+  {"home":"Atlanta","away":"Philadelphia","time":"Tonight • 9:00 PM"},
+  {"home":"Pittsburgh","away":"Carolina","time":"Schedule coming soon"},
+  {"home":"Seattle","away":"Dallas","time":"Schedule coming soon"},
+  {"home":"Seattle","away":"Arizona","time":"Schedule coming soon"}
+]
