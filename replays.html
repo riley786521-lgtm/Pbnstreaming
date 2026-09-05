@@ -14,8 +14,17 @@ header{height:74px;padding:0 6%;display:flex;align-items:center;justify-content:
 <main class="wrap"><div class="eyebrow">PRIME BROADCAST NETWORK</div><h1>Game Replays</h1><p class="sub">Catch up on PBN broadcasts, featured games, and highlights.</p><div class="grid" id="replays"></div></main>
 <footer>PBN SPORTS — WHERE THE GAME COMES ALIVE. 🏈</footer>
 <script>
-const replays=[{title:'PBN Featured Game',type:'FULL GAME REPLAY',date:'Coming soon',url:'#'},{title:'PBN Highlights',type:'GAME HIGHLIGHTS',date:'Coming soon',url:'#'}];
-document.getElementById('replays').innerHTML=replays.map(r=>`<article class="card"><div class="thumb"><div class="play">▶</div></div><div class="body"><div class="tag">${r.type}</div><div class="teams">${r.title}</div><div class="date">${r.date}</div><a class="btn" href="${r.url}">WATCH REPLAY →</a></div></article>`).join('');
+async function loadReplays(){
+  const box=document.getElementById('replays');
+  try{
+    const res=await fetch('data/replays.json?'+Date.now());
+    const data=await res.json();
+    const replays=data.replays||[];
+    if(!replays.length){box.innerHTML='<p class="sub">No replays available yet.</p>';return;}
+    box.innerHTML=replays.map(r=>`<article class="card"><div class="thumb"><div class="play">▶</div></div><div class="body"><div class="tag">${r.type||'REPLAY'}</div><div class="teams">${r.title||'PBN Replay'}</div><div class="date">${r.date||''}</div>${r.url&&r.url!=='#'?`<a class="btn" href="${r.url}" target="_blank" rel="noopener">WATCH REPLAY →</a>`:'<span class="btn" style="opacity:.55;cursor:not-allowed">COMING SOON</span>'}</div></article>`).join('');
+  }catch(e){box.innerHTML='<p class="sub">Replays are temporarily unavailable.</p>';}
+}
+loadReplays();
 </script>
 </body>
 </html>
