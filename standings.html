@@ -1,1 +1,27 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PBN Standings</title><style>*{box-sizing:border-box}body{margin:0;background:#050f1b;color:#fff;font-family:Arial,sans-serif}header{height:72px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;background:#071b30;border-bottom:1px solid #163653}.logo{font-size:32px;font-weight:900}.logo b{color:#06f}nav a{color:#cbd8e6;text-decoration:none;margin-left:22px;font-weight:700}.wrap{width:min(1000px,92%);margin:45px auto}.eyebrow{color:#4ea1ff;font-weight:900;letter-spacing:1px}h1{font-size:52px;margin:8px 0 35px}.table{background:#0b2138;border:1px solid #173b5c;border-radius:10px;overflow:hidden}.row{display:grid;grid-template-columns:70px 1fr 80px 80px 90px;padding:18px 22px;align-items:center;border-bottom:1px solid #17324a}.row:last-child{border:0}.head{background:#071b30;color:#91a8bf;font-size:13px;font-weight:900}.rank{font-weight:900;color:#4ea1ff}.team{font-size:20px;font-weight:900}.num{text-align:center;font-weight:800}.pct{text-align:center;font-weight:900}.note{margin-top:15px;color:#8197aa;font-size:14px}@media(max-width:600px){h1{font-size:40px}.row{grid-template-columns:45px 1fr 45px 45px 60px;padding:15px 10px}.team{font-size:16px}.head{font-size:11px}nav{display:none}}</style></head><body><header><div class="logo">P<b>B</b>N</div><nav><a href="index.html">Home</a><a href="schedule.html">Schedule</a><a href="replays.html">Replays</a><a href="broadcast-team.html">Team</a></nav></header><main class="wrap"><div class="eyebrow">PRIME BROADCAST NETWORK</div><h1>Standings</h1><section class="table"><div class="row head"><div>#</div><div>TEAM</div><div class="num">W</div><div class="num">L</div><div class="pct">PCT</div></div><div id="rows"></div></section><div class="note">Records are ready to be updated as PBN games are completed.</div></main><script>const teams=['Atlanta','Philadelphia','Pittsburgh','Carolina','Seattle','Dallas','Arizona'];document.getElementById('rows').innerHTML=teams.map((t,i)=>`<div class="row"><div class="rank">${i+1}</div><div class="team">🏈 ${t}</div><div class="num">0</div><div class="num">0</div><div class="pct">.000</div></div>`).join('');</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PBN Sports | Standings</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#050912;color:#fff;font-family:Arial,Helvetica,sans-serif}a{color:inherit}
+header{height:74px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:#070d18;border-bottom:1px solid #18243a;position:sticky;top:0;z-index:10}.logo{font-size:30px;font-weight:950;letter-spacing:-2px}.logo b{color:#1646ff}nav a{color:#aebbd0;text-decoration:none;margin-left:25px;font-weight:800;font-size:14px}nav a:hover,nav a.active{color:#fff}
+.wrap{width:min(1180px,92%);margin:58px auto 90px}.eyebrow{color:#5f84ff;font-weight:900;letter-spacing:1.8px;font-size:13px}h1{font-size:clamp(42px,6vw,68px);line-height:1;margin:10px 0 12px;letter-spacing:-2px}.sub{color:#8998ad;font-size:17px;margin:0 0 35px}
+.table{background:linear-gradient(145deg,#0d1524,#080e19);border:1px solid #1a2940;border-radius:18px;overflow:hidden;box-shadow:0 18px 50px #0005}.row{display:grid;grid-template-columns:70px 1fr 90px 90px 110px;padding:19px 25px;align-items:center;border-bottom:1px solid #17253a}.row:last-child{border:0}.head{background:#0a1220;color:#7f8ea5;font-size:12px;font-weight:900;letter-spacing:1px}.rank{font-weight:950;color:#6e8cff}.team{font-size:19px;font-weight:950}.num{text-align:center;font-weight:800}.pct{text-align:center;font-weight:950}.note{margin-top:15px;color:#718097;font-size:13px}.section-title{margin:42px 0 14px;font-size:18px;font-weight:900}.legend{display:flex;gap:10px;flex-wrap:wrap}.chip{border:1px solid #1a2940;background:#0b1220;border-radius:999px;padding:8px 12px;color:#93a1b5;font-size:12px;font-weight:800}.chip b{color:#fff}
+footer{border-top:1px solid #18243a;color:#68778d;padding:28px 6%;font-size:13px}@media(max-width:600px){nav{display:none}.wrap{margin-top:40px}.row{grid-template-columns:42px 1fr 48px 48px 65px;padding:16px 10px}.team{font-size:15px}.head{font-size:10px}}
+</style>
+</head>
+<body>
+<header><div class="logo">P<b>B</b>N</div><nav><a href="index.html">HOME</a><a href="watch.html">WATCH LIVE</a><a href="schedule.html">SCHEDULE</a><a href="replays.html">REPLAYS</a><a class="active" href="standings.html">STANDINGS</a></nav></header>
+<main class="wrap"><div class="eyebrow">PRIME BROADCAST NETWORK</div><h1>Standings</h1><p class="sub">Follow team records and league position throughout the season.</p>
+<section class="table"><div class="row head"><div>#</div><div>TEAM</div><div class="num">W</div><div class="num">L</div><div class="pct">PCT</div></div><div id="rows"></div></section>
+<div class="section-title">PBN Standings Info</div><div class="legend"><div class="chip"><b>W</b> Wins</div><div class="chip"><b>L</b> Losses</div><div class="chip"><b>PCT</b> Winning Percentage</div></div>
+<p class="note">Records are ready to be updated as PBN games are completed.</p></main>
+<footer>PBN SPORTS — WHERE THE GAME COMES ALIVE. 🏈</footer>
+<script>
+const teams=['Atlanta','Philadelphia','Pittsburgh','Carolina','Seattle','Dallas','Arizona'];
+document.getElementById('rows').innerHTML=teams.map((t,i)=>`<div class="row"><div class="rank">${i+1}</div><div class="team">${t}</div><div class="num">0</div><div class="num">0</div><div class="pct">.000</div></div>`).join('');
+</script>
+</body>
+</html>
